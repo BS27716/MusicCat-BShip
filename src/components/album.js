@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Song from './song';
 import styles from '../styles/styles';
+import { add } from '../track-player/player-commands';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class Album extends Component{
@@ -41,6 +42,22 @@ export default class Album extends Component{
     this.setState({showSongs:!this.state.showSongs})
   }
 
+  addAlbumToPlaylist() {
+    
+    for(i=0; i<this.props.album.tracks.length; i++)
+    {
+      const song = {
+        id: this.props.album.tracks[i].access_token,
+        url: this.props.album.tracks[i].url,
+        title: this.props.album.tracks[i].title,
+        artist: this.props.album.tracks[i].artist
+      };
+  
+      add(song);
+    }
+    
+  }
+
   showOpenCloseIcon() {
     if(this.state.showSongs)
     {
@@ -67,9 +84,14 @@ export default class Album extends Component{
               {this.showOpenCloseIcon()}
             </View>
           </TouchableOpacity >
+          <View style={{flex: 2, padding:10}}>
+            <TouchableOpacity onPress={this.addAlbumToPlaylist}>
+              <Text style={styles.addalbum}>AddAlbum</Text>
+            </TouchableOpacity> 
+          </View>
         </View>
         {this.showSongs()}
       </View>
     );
   }
-};
+};  

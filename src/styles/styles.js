@@ -8,7 +8,12 @@ const styles = StyleSheet.create({
         fontSize: 15
     },
     albuminfo:{
-        paddingLeft: 20,
+        paddingLeft: 60,
+    },
+
+    addalbum:{
+        fontWeight: 'bold',
+        paddingLeft: 30
     },
     albumheader:{
         flexDirection: 'row',
@@ -31,7 +36,6 @@ const styles = StyleSheet.create({
     logo:{
         width: 150,
         height: 60
-
     },
     
     trackstyle: {
